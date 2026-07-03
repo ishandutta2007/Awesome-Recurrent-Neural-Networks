@@ -74,9 +74,7 @@ Unrolled Graph:
 ### The Optimization Cost
 The overall error gradient across the sequence is accumulated by calculating partial derivatives at each time step and propagating errors backwards through the sequence chains:
 
-$$`
-\[\frac{\partial L}{\partial W} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial y_t} \frac{\partial y_t}{\partial h_t} \left( \prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}} \right) \frac{\partial h_k}{\partial W}\]
-`$$
+$`[\frac{\partial L}{\partial W} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial y_t} \frac{\partial y_t}{\partial h_t} \left( \prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}} \right) \frac{\partial h_k}{\partial W}\]`$
 
 The product term \(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\) is the exact mathematical driver of the vanishing gradient flaw, as it forces sequential multiplication of hidden-state Jacobian matrices.
 
