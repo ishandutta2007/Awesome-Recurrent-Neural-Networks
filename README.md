@@ -74,7 +74,11 @@ Unrolled Graph:
 ### The Optimization Cost
 The overall error gradient across the sequence is accumulated by calculating partial derivatives at each time step and propagating errors backwards through the sequence chains:
 
+$$
+
 \[\frac{\partial L}{\partial W} = \sum_{t=1}^{T} \sum_{k=1}^{t} \frac{\partial L_t}{\partial y_t} \frac{\partial y_t}{\partial h_t} \left( \prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}} \right) \frac{\partial h_k}{\partial W}\]
+
+$$
 
 The product term \(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\) is the exact mathematical driver of the vanishing gradient flaw, as it forces sequential multiplication of hidden-state Jacobian matrices.
 
@@ -95,21 +99,21 @@ The product term \(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\) is 
 
 Recurrent networks are modular and can be wired into different structural shapes depending on the input and output dimensions of the task:
 
-### 1. One-to-Many Architecture
-*   **Structure:** A single static input token maps to an unpredictable chain sequence of outputs.
-*   **Application:** *Image Captioning* (Inputting a static matrix of pixels from a CNN → Generating a dynamic sequential text description sentence).
+- ### 1. One-to-Many Architecture
+	*   **Structure:** A single static input token maps to an unpredictable chain sequence of outputs.
+	*   **Application:** *Image Captioning* (Inputting a static matrix of pixels from a CNN → Generating a dynamic sequential text description sentence).
 
-### 2. Many-to-One Architecture
-*   **Structure:** An incoming string sequence of tokens is processed down to a single output categorization vector.
-*   **Application:** *Sentiment Analysis* or *Time-Series Classification* (Processing a sequence of 500 financial transactions → Emitting a single risk-probability percentage).
+- ### 2. Many-to-One Architecture
+	*   **Structure:** An incoming string sequence of tokens is processed down to a single output categorization vector.
+	*   **Application:** *Sentiment Analysis* or *Time-Series Classification* (Processing a sequence of 500 financial transactions → Emitting a single risk-probability percentage).
 
-### 3. Many-to-Many Architecture (Synchronous)
-*   **Structure:** Every sequential input frame has an immediate, concurrent output frame.
-*   **Application:** *Video Frame Segmentation* or *POS Tagging* (Labeling every single spoken word in an audio sequence with its grammatical classification frame-by-frame).
+- ### 3. Many-to-Many Architecture (Synchronous)
+	*   **Structure:** Every sequential input frame has an immediate, concurrent output frame.
+	*   **Application:** *Video Frame Segmentation* or *POS Tagging* (Labeling every single spoken word in an audio sequence with its grammatical classification frame-by-frame).
 
-### 4. Many-to-Many Architecture (Asynchronous / Seq2Seq)
-*   **Structure:** An encoder RNN consumes the entire input sequence to build a dense thought vector, then passes it to a decoder RNN which unrolls the output sequence.
-*   **Application:** *Machine Translation* (Reading an entire French paragraph → Computing a compressed vector context → Synthesizing the equivalent English paragraph).
+- ### 4. Many-to-Many Architecture (Asynchronous / Seq2Seq)
+	*   **Structure:** An encoder RNN consumes the entire input sequence to build a dense thought vector, then passes it to a decoder RNN which unrolls the output sequence.
+	*   **Application:** *Machine Translation* (Reading an entire French paragraph → Computing a compressed vector context → Synthesizing the equivalent English paragraph).
 
 ---
 
