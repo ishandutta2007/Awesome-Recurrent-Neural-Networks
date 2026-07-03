@@ -12,7 +12,12 @@ Recurrent Neural Networks revolutionized deep learning by introducing sequential
 The architectural transition from basic hidden state feedback loops to specialized gated systems, and ultimately to parallelized self-attention foundation networks.
 
 ```mermaid
-[1980s: Vanilla RNN]        ──► Simple sequential recurrence loops; prone to exploding/vanishing gradients.│▼[1997: LSTM Network]        ──► Constant Error Carousel (CEC) + Input/Output/Forget gates (Hochreiter).│▼[2014: GRU Architecture]     ──► Streamlined gating; merges Cell State into Hidden State (Cho et al.).│▼[2015: Encoder-Decoder]     ──► Sequence-to-Sequence (Seq2Seq) mapping using joint recurrent states.│▼[Modern: Mamba / RWKV]      ──► Linear Transformers & modern state-space models reviving recurrence at scale.
+flowchart TD
+    A["1980s: Vanilla RNN<br/>Simple sequential recurrence; prone to vanishing/exploding gradients."]
+    --> B["1997: LSTM Network<br/>Constant Error Carousel (CEC) with input, forget, and output gates."]
+    --> C["2014: GRU Architecture<br/>Simplified gating; merges cell state into hidden state."]
+    --> D["2015: Encoder–Decoder (Seq2Seq)<br/>Sequence-to-sequence mapping using recurrent encoder and decoder states."]
+    --> E["Modern: Mamba / RWKV<br/>State-space and recurrent architectures enabling linear-time sequence modeling."]
 ```
 
 ---
