@@ -75,6 +75,9 @@
     .pulse-ring {
       fill: none;
       stroke-width: 1.5;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pulse 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
     }
     .recurrent-loop {
       fill: none;
@@ -95,6 +98,21 @@
       }
       100% {
         stroke-dashoffset: -128;
+      }
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+        stroke: #38BDF8;
+      }
+      50% {
+        stroke: #818CF8;
+      }
+      100% {
+        transform: scale(3.5);
+        opacity: 0;
+        stroke: #C084FC;
       }
     }
   </style>
@@ -121,19 +139,11 @@
     
     <!-- Pulse Ring Animating from Hidden State & Hidden Nodes -->
     <g transform="translate(180, 80)">
-      <circle class="pulse-ring" cx="0" cy="0" r="12">
-        <animate attributeName="r" from="12" to="42" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" from="0.8" to="0" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="stroke" values="#38BDF8;#818CF8;#C084FC" dur="3s" repeatCount="indefinite" />
-      </circle>
+      <circle class="pulse-ring" cx="0" cy="0" r="12" />
       <circle class="node node-purple" cx="0" cy="0" r="12" />
     </g>
     <g transform="translate(180, 160)">
-      <circle class="pulse-ring" cx="0" cy="0" r="12">
-        <animate attributeName="r" from="12" to="42" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" from="0.8" to="0" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="stroke" values="#38BDF8;#818CF8;#C084FC" dur="3s" repeatCount="indefinite" />
-      </circle>
+      <circle class="pulse-ring" cx="0" cy="0" r="12" />
       <circle class="node node-purple" cx="0" cy="0" r="12" />
     </g>
     
