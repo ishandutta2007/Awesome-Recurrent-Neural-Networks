@@ -43,7 +43,6 @@
       fill: url(#accent-grad);
       font-size: 32px;
       letter-spacing: 2px;
-      filter: url(#text-glow);
     }
     .subtitle {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -77,6 +76,7 @@
       fill: none;
       stroke-width: 1.5;
       vector-effect: non-scaling-stroke;
+      transform-origin: 0 0;
       animation: pulse 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
     }
     .recurrent-loop {
