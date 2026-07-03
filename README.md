@@ -1,7 +1,12 @@
-# Awesome-Recurrent-Neural-Networks
+# Awesome-Recurrent-Neural-Networks 🧠🔄
+
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Recurrent Neural Networks Banner" width="100%">
+</p>
+
 ## 🔄 The Recurrent Neural Network (RNN) Architecture Map
 
-> **A comprehensive reference guide for Recurrent Neural Networks (RNNs)—mapping their core mathematical foundations, architectural evolutions, optimization bottlenecks, and modern extensions.**
+> **A comprehensive reference guide for Recurrent Neural Networks (RNNs)—mapping their core mathematical foundations, architectural evolutions, optimization bottlenecks, and modern extensions.** 📚
 
 Recurrent Neural Networks revolutionized deep learning by introducing sequential memory processing. By feeding the output of a hidden state back into itself as the input for the next time step, RNNs broke the constraint of static, fixed-size vector inputs, enabling the modeling of time-series data, natural language, and sequential waveforms.
 
@@ -22,9 +27,9 @@ flowchart TD
 
 ---
 
-## 🧭 Deep Dive: Architectural Precursors & Variations
+## 🧭 Deep Dive: Architectural Precursors & Variations 🔬
 
-### 1. Vanilla Recurrent Neural Networks (Elman & Jordan Networks)
+### 1. Vanilla Recurrent Neural Networks (Elman & Jordan Networks) 🍦
 The earliest implementations of recurrence introduced an internal feedback loop into standard feedforward architectures.
 *   **The Mechanism:** The hidden layer activations from time step t-1 are saved in a temporary layer (often called context units) and fed back into the hidden layer at time step t along with the current input vector.
 *   **Mathematical Form:** 
@@ -32,7 +37,7 @@ The earliest implementations of recurrence introduced an internal feedback loop 
     \[y_t = \text{softmax}(W_{hy} h_t + b_y)\]
 *   **Limitation:** The **Vanishing and Exploding Gradient Problem**. During Backpropagation Through Time (BPTT), gradients are repeatedly multiplied by the weight matrix \(W_{hh}\). If eigenvalues of \(W_{hh}\) are less than 1, the gradient shrinks exponentially to zero; if greater than 1, it blows up to infinity. This prevents vanilla RNNs from capturing long-term dependencies beyond 10–20 time steps.
 
-### 2. Long Short-Term Memory (LSTM) (1997)
+### 2. Long Short-Term Memory (LSTM) (1997) 💾
 Sepp Hochreiter and Jürgen Schmidhuber solved the vanishing gradient problem by replacing the simple hidden layer node with a complex structural unit called an **LSTM Cell**.
 *   **The Innovation:** Introduced a separate, parallel highway called the **Cell State (\(C_t\))** that allows information to flow across thousands of time steps with minimal mathematical distortion. 
 *   **Gating Infrastructure:**
@@ -41,7 +46,7 @@ Sepp Hochreiter and Jürgen Schmidhuber solved the vanishing gradient problem by
     *   *Output Gate (\(o_t\)):* Controls what parts of the updated cell state are surfaced to update the current visible hidden state (\(h_t\)).
 *   **Impact:** Became the industry backbone for speech recognition, machine translation, and text-to-speech for over two decades.
 
-### 3. Gated Recurrent Unit (GRU) (2014)
+### 3. Gated Recurrent Unit (GRU) (2014) 🎛️
 Kyunghyun Cho et al. streamlined the heavy design of the LSTM cell to reduce its parameter footprint and computation overhead.
 *   **The Innovation:** Eliminated the separate cell state entirely, tracking all long-term and short-term trends inside a single unified **Hidden State (\(h_t\))**.
 *   **Gating Infrastructure:**
@@ -49,14 +54,14 @@ Kyunghyun Cho et al. streamlined the heavy design of the LSTM cell to reduce its
     *   *Update Gate (\(z_t\)):* Acts simultaneously as a forget gate and an input gate, deciding how much old memory to keep versus how much new content to ingest.
 *   **Impact:** Provided identical empirical performance to LSTMs on most sequence benchmarks while training up to 20% faster due to fewer parameter matrices.
 
-### 4. Modern Linear Recurrence: Mamba & RWKV (2023–2026 Era)
+### 4. Modern Linear Recurrence: Mamba & RWKV (2023–2026 Era) ⚡
 While Transformers replaced LSTMs due to parallel training efficiency, modern architectures have rediscovered recurrence to avoid the heavy memory costs of the Transformer's O(N²) KV-cache.
 *   **The Innovation:** Modern State Space Models (SSMs) like **Mamba** and linear recurrence models like **RWKV** utilize time-varying, data-dependent recurrence formulas that can be mathematically unrolled into highly efficient parallel associative scans during training.
 *   **Impact:** Offers the linear computational scaling of classical RNNs at inference time (O(1) state updates per token) while retaining the massive parallel training capabilities and expressiveness of traditional Transformers.
 
 ---
 
-## 🧮 Backpropagation Through Time (BPTT) Mechanics
+## 🧮 Backpropagation Through Time (BPTT) Mechanics 📉
 
 To train an RNN, the cyclic graph must be unrolled across the entire temporal length of the sequence, transforming the recurrent network into a deep feedforward network with shared weights across each vertical slice.
 
@@ -85,7 +90,7 @@ The product term \(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\) is 
 
 ---
 
-## 🎛️ Feature Comparison Matrix
+## 🎛️ Feature Comparison Matrix 📊
 
 | Metric | Vanilla RNN | LSTM | GRU | Mamba (Modern SSM) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -96,7 +101,7 @@ The product term \(\prod_{j=k+1}^{t} \frac{\partial h_j}{\partial h_{j-1}}\) is 
 
 ---
 
-## 🚀 Real-World Applications by Sequence Topology
+## 🚀 Real-World Applications by Sequence Topology 🌐
 
 Recurrent networks are modular and can be wired into different structural shapes depending on the input and output dimensions of the task:
 
@@ -118,7 +123,7 @@ Recurrent networks are modular and can be wired into different structural shapes
 
 ---
 
-## 💻 Baseline PyTorch Implementation: LSTM Sequence Predictor
+## 💻 Baseline PyTorch Implementation: LSTM Sequence Predictor 🐍
 
 ```python
 import torch

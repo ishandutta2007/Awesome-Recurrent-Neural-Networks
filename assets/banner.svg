@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E17" />
+      <stop offset="50%" stop-color="#121824" />
+      <stop offset="100%" stop-color="#1A2333" />
+    </linearGradient>
+
+    <!-- Node Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Text Glow Filter -->
+    <filter id="text-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#C084FC" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* CSS Styles & Animations */
+    .bg {
+      fill: url(#bg-grad);
+    }
+    .title {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 800;
+      fill: url(#accent-grad);
+      font-size: 32px;
+      letter-spacing: 2px;
+      filter: url(#text-glow);
+    }
+    .subtitle {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 400;
+      fill: #94A3B8;
+      font-size: 14px;
+      letter-spacing: 4px;
+    }
+    .grid-lines {
+      stroke: #334155;
+      stroke-width: 0.5;
+      opacity: 0.15;
+    }
+    .node {
+      fill: #0F172A;
+      stroke: #38BDF8;
+      stroke-width: 2;
+      filter: url(#glow);
+    }
+    .node-purple {
+      stroke: #C084FC;
+    }
+    .connection {
+      fill: none;
+      stroke: #475569;
+      stroke-width: 1.5;
+      stroke-dasharray: 4, 4;
+      animation: dash 30s linear infinite;
+    }
+    .pulse-ring {
+      fill: none;
+      stroke-width: 1.5;
+      transform-origin: center;
+      animation: pulse 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+    }
+    .recurrent-loop {
+      fill: none;
+      stroke: #818CF8;
+      stroke-width: 2;
+      stroke-dasharray: 8, 120;
+      animation: flow 4s linear infinite;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+    @keyframes flow {
+      0% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: -128;
+      }
+    }
+    @keyframes pulse {
+      0% {
+        r: 10px;
+        opacity: 0.8;
+        stroke: #38BDF8;
+      }
+      50% {
+        stroke: #818CF8;
+      }
+      100% {
+        r: 40px;
+        opacity: 0;
+        stroke: #C084FC;
+      }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="240" rx="16" />
+
+  <!-- Background Grid Pattern -->
+  <g class="grid-lines">
+    <path d="M 0,40 L 800,40 M 0,80 L 800,80 M 0,120 L 800,120 M 0,160 L 800,160 M 0,200 L 800,200" />
+    <path d="M 100,0 L 100,240 M 200,0 L 200,240 M 300,0 L 300,240 M 400,0 L 400,240 M 500,0 L 500,240 M 600,0 L 600,240 M 700,0 L 700,240" />
+  </g>
+
+  <!-- Neural Network Visualization on the Right -->
+  <g transform="translate(420, 0)">
+    <!-- Connections -->
+    <path class="connection" d="M 100,120 L 180,80 M 100,120 L 180,160 M 180,80 L 260,120 M 180,160 L 260,120" />
+    
+    <!-- Recurrent loops -->
+    <!-- Self loop on hidden node 1 (180, 80) -->
+    <path class="recurrent-loop" d="M 180,80 C 140,40 220,40 180,80" />
+    <!-- Self loop on hidden node 2 (180, 160) -->
+    <path class="recurrent-loop" d="M 180,160 C 140,200 220,200 180,160" />
+    
+    <!-- Pulse Ring Animating from Hidden State -->
+    <circle class="pulse-ring" cx="180" cy="80" r="10" />
+    <circle class="pulse-ring" cx="180" cy="160" r="10" />
+    
+    <!-- Nodes -->
+    <!-- Input Node -->
+    <circle class="node" cx="100" cy="120" r="10" />
+    <!-- Hidden Nodes -->
+    <circle class="node node-purple" cx="180" cy="80" r="12" />
+    <circle class="node node-purple" cx="180" cy="160" r="12" />
+    <!-- Output Node -->
+    <circle class="node" cx="260" cy="120" r="10" />
+    
+    <!-- Labels -->
+    <text x="100" y="145" font-family="sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">Input x</text>
+    <text x="180" y="55" font-family="sans-serif" font-size="10" fill="#c084fc" text-anchor="middle">h_t</text>
+    <text x="260" y="145" font-family="sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">Output y</text>
+  </g>
+
+  <!-- Typography / Brand -->
+  <g transform="translate(48, 110)">
+    <text class="title" x="0" y="0">AWESOME RNNs</text>
+    <text class="subtitle" x="2" y="32">RECURRENT NEURAL NETWORKS</text>
+  </g>
+</svg>
