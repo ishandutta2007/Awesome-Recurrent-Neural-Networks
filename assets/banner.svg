@@ -35,12 +35,12 @@
   <style>
     /* CSS Styles & Animations */
     .bg {
-      fill: url(#bg-grad);
+      fill: #0B0F19;
     }
     .title {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-weight: 800;
-      fill: url(#accent-grad);
+      fill: #F8FAFC;
       font-size: 32px;
       letter-spacing: 2px;
     }
@@ -60,7 +60,6 @@
       fill: #0F172A;
       stroke: #38BDF8;
       stroke-width: 2;
-      filter: url(#glow);
     }
     .node-purple {
       stroke: #C084FC;
